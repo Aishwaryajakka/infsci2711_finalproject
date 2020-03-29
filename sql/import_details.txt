@@ -9,5 +9,7 @@ Steps followed to clean the xlsx in data/cleaned_data folder:
 
 Steps to insert the ODB data into the database:
 1. Run the create_odb_table.sql
-2. Run insert_odb_2009_2010.sql in batches
-3. Run insert_odb_2010_2011.sql in batches
+2. Run insert_odb_2009_2010_1.sql in batches
+3. Run insert_odb_2009_2010_2.sql in batches
+4. Run insert_odb_2010_2011_1.sql in batches
+5. Run insert_odb_2010_2011_2.sql in batches
