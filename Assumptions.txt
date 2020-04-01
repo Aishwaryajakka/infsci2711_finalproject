@@ -1,1 +1,4 @@
 1. An item can have multiple descriptions for the same stockcode
+2. We are assuming that a top product is the product that is most purchased by the customer
+3. We assume that the currency is the same accross all the countries
+
