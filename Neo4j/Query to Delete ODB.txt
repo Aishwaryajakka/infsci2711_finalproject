@@ -1,0 +1,7 @@
+*** This Query is to be used only if you need to startover 
+**You will need to execute this query multiple times 
+**Adjust the limit according to your computer
+
+MATCH(n:ODB)
+WITH n LIMIT 100000
+DELETE n
