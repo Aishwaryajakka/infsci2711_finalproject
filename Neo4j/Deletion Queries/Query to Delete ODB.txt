@@ -1,7 +1,8 @@
 *** This Query is to be used only if you need to startover 
-**You will need to execute this query multiple times 
-**Adjust the limit according to your computer
+**You will need to install the APOC plugin 
+**Adjust the batchSize according to your computer
 
-MATCH(n:ODB)
-WITH n LIMIT 100000
-DELETE n
+CALL apoc.periodic.iterate(
+"MATCH(n:ODB) RETURN n",
+"DELETE(n)",
+{batchSize:100000})
