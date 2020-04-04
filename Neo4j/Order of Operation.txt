@@ -1,0 +1,6 @@
+1. Change the Customer ID column in the Excel files to CustomerID
+2. Export both of the files to a .CSV format
+3. Save the .CSV files into the import folder of the database
+4. Run "Creating ODB" in the Creation Queries folder
+5. Run the queries in the Cleaning Queries folder 
+6. Run "Creating FACT" in the Creation Queries folder
