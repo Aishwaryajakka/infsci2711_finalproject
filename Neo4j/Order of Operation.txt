@@ -1,4 +1,9 @@
+Please follow the order of operations to create the Database
+
 Save the .CSV files in the data/CSV folder into the import folder of the database
-Run "Creating ODB" in the Creation Queries folder
-Run the queries in the Cleaning Queries folder 
+
+Run "Creating ODB" in the Creation Queries folder by pasting the queries
+
+Run the "Converting InvoiceDate to neo4j format in ODB" and "Converting InvoiceTime to neo4j format in ODB" queries in the Cleaning Queries folder 
+
 Run "Creating FACT" in the Creation Queries folder
