@@ -1,8 +1,8 @@
-**You will need to install the APOC plugin 
-**Adjust the batchSize according to your computer
-**This query converts the information in InvoiceTime in the ODB and converts it into a format understood by neo4j. This will make it easier to seperate into hour, minute and second
-**This can be done using InvoiceTime.hour, InvoiceTime.minute, InvoiceTime.second
-**https://neo4j.com/docs/cypher-manual/current/syntax/temporal/
+//You will need to install the APOC plugin 
+//Adjust the batchSize according to your computer
+//This query converts the information in InvoiceTime in the ODB and converts it into a format understood by neo4j. This will make it easier to seperate into hour, minute and second
+//This can be done using InvoiceTime.hour, InvoiceTime.minute, InvoiceTime.second
+//https://neo4j.com/docs/cypher-manual/current/syntax/temporal/
 
 CALL apoc.periodic.iterate(
 "MATCH(n:ODB) RETURN n",

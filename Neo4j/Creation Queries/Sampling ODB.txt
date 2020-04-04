@@ -1,4 +1,4 @@
-**This query creates a representative subset of the ODB database for testing out queries
+//This query creates a representative subset of the ODB database for testing out queries
 
 MATCH(test:ODB)
 WHERE rand() < 0.01
