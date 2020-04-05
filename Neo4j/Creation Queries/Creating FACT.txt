@@ -1,9 +1,0 @@
-//You will require to install APOC from the plugins section for this to work
-//This query generates the FACT table from the ODB table 
-//You can change the batchSize to if the query does not run well
-//Reference: https://neo4j.com/docs/labs/apoc/current/graph-updates/periodic-execution/
-
-CALL apoc.periodic.iterate(
-"MATCH(n:ODB) RETURN n",
-"CREATE(:FACT{CustomerID: n.CustomerID, Year: n.InvoiceDate.year, Month: n.InvoiceDate.month, Day: n.InvoiceDate.day, Hour: n.InvoiceTime.hour, Minute: n.InvoiceTime.minute, StockCode: n.StockCode, Quantity: n.Quantity, TotalSales: n.SubTotal})",
-{batchSize:10000})
