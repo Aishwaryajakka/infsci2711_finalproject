@@ -1,0 +1,9 @@
+//This query will take a lot of time, 10+ minutes
+
+CALL apoc.periodic.iterate(
+"MATCH(n:FACT),(m:TIMEDIM) 
+WHERE n.Year = m.Year AND n.Month = m.Month AND n.Day = m.Day
+RETURN n, m",
+"WHERE n.Hour = m.Hour AND n.Minute = m.Minute 
+CREATE (n)-[:IS_TIME]->(m)",
+{batchSize:1000})
