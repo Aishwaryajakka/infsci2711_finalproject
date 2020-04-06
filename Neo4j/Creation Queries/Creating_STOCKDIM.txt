@@ -1,4 +1,9 @@
+//You will require to install APOC from the plugins section for this to work
+//This query generates the Stock Dimension from the ODB table 
+//You can change the batchSize to if the query does not run well
+//Reference: https://neo4j.com/docs/labs/apoc/current/graph-updates/periodic-execution/
+
 CALL apoc.periodic.iterate(
-"MATCH (n:ODB) RETURN n.StockCode as StockCode, n.Description as Description, max(n.Price) as Price",
+"MATCH (n:ODB) RETURN n.StockCode as StockCode, max(n.Description) as Description, max(n.Price) as Price",
 "CREATE(:STOCKDIM{StockCode: StockCode, Description: Description, Price: Price})",
 {batchSize:10000})

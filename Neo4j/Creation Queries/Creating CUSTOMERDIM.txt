@@ -1,5 +1,5 @@
 //You will require to install APOC from the plugins section for this to work
-//This query creates the Customer Dimention from the ODB table 
+//This query creates the Customer Dimension from the ODB table 
 //You can change the batchSize to if the query does not run well
 //Reference: https://neo4j.com/docs/labs/apoc/current/graph-updates/periodic-execution/
 
