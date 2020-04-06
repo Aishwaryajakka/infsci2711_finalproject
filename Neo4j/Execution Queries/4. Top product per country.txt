@@ -1,0 +1,6 @@
+// You cannot have nexted aggregation queries hence to find the maximum I found the count for each of the StockCodes 
+// Arranged it to display from the largest value to smallest value and displayed only the first one to find the maximum value
+
+MATCH(n:FACT)-[r:IS_STOCK]->(m:STOCKDIM)
+RETURN m.Description AS Description, count(*) AS Quantity 
+ORDER BY count(*) DESC LIMIT 1
