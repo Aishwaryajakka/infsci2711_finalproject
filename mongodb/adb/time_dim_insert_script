@@ -1,1 +1,27 @@
+#  insert records in time_dim collection (through time_dim_temp collection) : it is a two step process
 
+db.getSiblingDB('odb')['retail'].find( { }, 
+				       { Day: 1, 
+					 Month: 1, 
+					 Year: 1, 
+					 Hour: 1, 
+					 Minute: 1 
+				       } 
+				 ).forEach( function(rec){ db.time_dim_temp.insert(rec) } )
+
+
+
+db.time_dim_temp.aggregate ( 
+	[{
+	    $group: {
+	        _id: {
+	            Year: "$Year",
+	            Month: "$Month",
+	            Day: "$Day",
+	            Hour: "$Hour",
+	            Minute: "$Minute"
+	        }
+	    }
+	}
+	]
+ ).forEach( function(rec){ db.time_dim.insert(rec) } )
