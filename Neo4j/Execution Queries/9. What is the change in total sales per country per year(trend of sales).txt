@@ -1,3 +1,10 @@
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
 CALL{
 CALL{
 MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM)
