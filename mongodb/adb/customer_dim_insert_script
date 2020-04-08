@@ -1,1 +1,17 @@
+# insert records in customer_dim collection
 
+db.getSiblingDB('odb')['retail'].aggregate( 
+	{"$group" : 
+		{ "_id": {CustomerID:"$CustomerID", 
+				  Country:"$Country"} } 
+	}, 
+		{"$match": 
+			{"_id" :
+				{ "$ne" : null } 
+			} 
+		}, 
+		{"$project": 
+			{CustomerID : "$_id.CustomerID", 
+			Country: "$_id.Country", "_id" : 0} 
+		} 
+).forEach( function (rec) { db.customer_dim.insert(rec)  } )
