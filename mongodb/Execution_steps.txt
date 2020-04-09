@@ -1,10 +1,9 @@
-# Steps followed to clean the Cleaned2009-2010.xlsx and Cleaned 2010-2011.xlsx. (actual data files) from the data folder:
-# 1. Changed the file type to csv.
-# 2. Loaded the csv files to Jupyter Notebook (Python) and converted them to dataframes.
-# 3. Concatenated two dataframes using the ‘append’ function.
-# 4. The attribute ‘Customer ID’ is renames to ‘CustomerID’.
-# 5. The attributes ‘InvoiveDate’ and ‘InvoiceTime’ are then concatenated and renamed to ‘InvoiceDateTime’. Later, they are split to Year (YYYY), Month (MM), Day (DD), Hour (HH) and Minute (MM).
-# 6. The dataframe is then exported to the data folder as ‘Online_Retail_DB.csv’. 
+# 1. Execute the following file in Jupyter notebook where the cleaned data set is kept:
+
+Online_Retail_Data_Cleaning.ipynb
+
+# 2. One output file will be generated, which is 'Online_Reatil_Data.csv'. This csv file needs to be imported in MongoDB odb.
+
 
 # Steps to import csv to MongoDB to ODB
 # 1. Go to the terminal and login to MongoDB (by typing ‘mongo’ to stay in the same terminal or ‘mongod’ to switch to a new terminal).
