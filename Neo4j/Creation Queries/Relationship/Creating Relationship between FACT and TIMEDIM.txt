@@ -1,10 +1,8 @@
 //WARNING THIS HAS TIMEID because Neo4j 4.0 onwards has an inefficieny which prevents the relationship query from executing in less than 6 hours if at all
 
 CALL apoc.periodic.iterate(
-"MATCH(n:ODB) 
-RETURN n.InvoiceDate.year as Year, n.InvoiceDate.month as Month, n.InvoiceDate.day as Day,n.InvoiceTime.hour as Hour, n.InvoiceTime.minute as Minute
-UNION
-MATCH(n:ODB) 
-RETURN n.InvoiceDate.year as Year, n.InvoiceDate.month as Month, n.InvoiceDate.day as Day,n.InvoiceTime.hour as Hour, n.InvoiceTime.minute as Minute",
-"CREATE(:TIMEDIM{ Year: Year , Month: Month, Day: Day, Hour: Hour, Minute: Minute, TimeID:datetime({Year: Year , Month: Month, Day: Day, Hour: Hour, Minute: Minute})})",
-{batchSize:10000})
+"MATCH(n:FACT),(m:TIMEDIM)
+WHERE n.TimeID=m.TimeID
+RETURN n,m",
+"CREATE (n)-[:IS_TIME]->(m)",
+{batchSize:100000})
