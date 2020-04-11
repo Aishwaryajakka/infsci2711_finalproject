@@ -1,40 +1,40 @@
 # 8. Best-selling product per month [2009-2011]
 
 db.fact.aggregate(
-	[{
-	    $project: {
-	        Month: "$Month",
-	        TotalSales: "$TotalSales",
-	        StockCode: "$StockCode",
-	        document: "$$ROOT"
-	    }
-	}, {
-	    $sort: {
-	        TotalSales: -1
-	    }
-	}, {
-	    $group: {
-	        _id: "$Month",
-	        max: {
-	            $max: "$TotalSales"
-	        },
-	        product: {
-	            $first: "$document"
-	        }
-	    }
-	}, {
-	    $project: {
-	        Month: "$_id",
-	        TotalSales: "$max",
-	        StockCode: "$product.StockCode",
-	        _id: 0
-	    }
-	}, {
-	    $sort: {
-	        Month: 1
-	    }
-	}], {
-		allowDiskUse: true 
-	}
+[{
+    $lookup: {
+        from: 'stock_dim',
+        localField: 'StockCode',
+        foreignField: 'StockCode',
+        as: 'StockCode'
+    }
+}, {
+    $group: {
+        _id: '$Month',
+        max: {
+            $max: '$Quantity'
+        },
+        StockCode: {
+            $first: '$StockCode'
+        }
+    }
+}, {
+    $unwind: {
+        path: '$StockCode'
+    }
+}, {
+    $project: {
+        Month: '$_id',
+        StockCode: '$StockCode.StockCode',
+        StockDescription: '$StockCode.Description',
+        Quantity: '$max',
+        _id: 0
+    }
+}, {
+    $sort: {
+        Month: 1
+    }
+}], {
+         allowDiskUse: true
+     } 
  )
-

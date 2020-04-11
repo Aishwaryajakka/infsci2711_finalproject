@@ -1,1 +1,44 @@
+# Which item is sold below the threshold value (under-performed products) ?
 
+db.fact.aggregate(
+...     [{
+...         $group: {
+...             _id: {
+...                 StockCode: '$StockCode',
+...                 Year: '$Year'
+...             },
+...             TotalSaleQ: {
+...                 $sum: '$Quantity'
+...             },
+...             count: {
+...                 $sum: 1
+...             }
+...         }
+...     }, {
+...         $sort: {
+...             _id: 1
+...         }
+...     }, {
+...         $group: {
+...             _id: '$_id.StockCode',
+...             sale_q_per_year: {
+...                 $push: {
+...                     Year: '$_id.Year',
+...                     TotalSaleQ: '$TotalSaleQ',
+...                     count: '$count'
+...                 }
+...             }
+...         }
+...     }]
+... ).forEach ( function (stkReport) {
+...         var stkCd = stkReport._id;
+...         var prevYr = stkReport.sale_q_per_year[0].Year;
+...         var prevYrAvg = stkReport.sale_q_per_year[0].TotalSaleQ/stkReport.sale_q_per_year[0].count;
+...         for (i = 1; i < stkReport.sale_q_per_year.length; i++) {
+...             var rec = stkReport.sale_q_per_year[i];
+...             var curYrAvg = rec.TotalSaleQ / rec.count;
+...             print("for StockCode:" + stkCd + " previous year: " + prevYr + "'s average: " + prevYrAvg + " and current year " + rec.Year + "'s average is " + curYrAvg);
+...             prevYrAvg = curYrAvg;
+...         }
+...     }
+... )
