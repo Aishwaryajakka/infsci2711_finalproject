@@ -80,10 +80,9 @@ order by total desc
 /*Query 5: Which item is sold below the threshold value (under-performed products) in 2010 */
 
 
-/*SQL Query */
 
 
-/*Query using materialized view: */
+
 
 
 

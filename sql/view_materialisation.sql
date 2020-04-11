@@ -47,6 +47,23 @@ Select stockdim.StockCode, fact.month,  stockdim.Description ,sum(fact.Quantity)
     group by Stockdim.StockCode, Fact.month, stockdim.Description
 );
 
+/*  Create materialized view mview_quantity_product_year */
+
+create table mview_quantity_product_year(
+stockCode varchar(15),
+Year int(4),
+description varchar(100),
+TotalQuantity int(11));
+
+
+/*  insert into view mview_quantity_product_year */
+insert into mview_quantity_product_year(
+Select stockdim.StockCode, fact.year,  stockdim.Description ,sum(fact.Quantity) 
+    from fact join stockdim on fact.StockCode = stockdim.StockCode
+    group by Stockdim.StockCode, Fact.year, stockdim.Description
+);
+
+
 /* Create materialized view mview_product_country: */
 /* Ideally we would like to display description but due to the complexity and heaviness of the query,
  we shall display only stockcode */
