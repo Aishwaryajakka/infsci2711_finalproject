@@ -167,6 +167,30 @@ on t2.stockCode=t1.stockcode and t2.description=t1.description and t2.TotalQuant
 /*Query 9: What is the change in total sales per country per year (trend of sales) */
 /*SQL Query */
 
+SELECT a.sub_2010_2009, b.sub_2011_2010, b.Country
+FROM
+(select ( t1.totalsale - t2.totalsale) as sub_2010_2009 , t1.country
+from(
+SELECT totalsale, country 
+from mview_yearsale_country
+where year = 2010) t1 ,(
+SELECT totalsale, country 
+from mview_yearsale_country
+where year = 2009) t2
+where t1.country = t2.country) as a  
+
+INNER JOIN  
+
+(select ( t1.totalsale - t2.totalsale) as sub_2011_2010 , t1.country
+from(
+SELECT totalsale, country 
+from mview_yearsale_country
+where year = 2011) t1 ,(
+SELECT totalsale, country 
+from mview_yearsale_country
+where year = 2010) t2
+where t1.country = t2.country) as b
+on b.country = a.country;
 
 
 /*Query using materialized view: */
