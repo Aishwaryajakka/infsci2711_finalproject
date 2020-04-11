@@ -79,11 +79,17 @@ order by total desc
 
 /*Query 5: Which item is sold below the threshold value (under-performed products) in 2010 */
 
-
-
-
-
-
+/*Query using materialized view: (working) */
+select t1.stockcode, t1.description, (t1.totalquant_2010- t2.totalquant_2009) as difference
+from 
+(select stockcode, year , description, totalquantity as totalquant_2010 from mview_quantity_product_year
+where year = 2010) t1 
+inner join 
+(select stockcode, year , description, totalquantity as totalquant_2009 from mview_quantity_product_year
+where year = 2009) t2 
+on t1.stockcode = t2.stockcode and t1.description = t2.description 
+and t2.totalquant_2009 <= t1.totalquant_2010 
+ORDER BY `difference`  ASC limit 25;
 
 
 /* ****************************************************************************************************************** */
@@ -160,6 +166,8 @@ on t2.stockCode=t1.stockcode and t2.description=t1.description and t2.TotalQuant
 
 /*Query 9: What is the change in total sales per country per year (trend of sales) */
 /*SQL Query */
+
+
 
 /*Query using materialized view: */
 /* ****************************************************************************************************************** */
