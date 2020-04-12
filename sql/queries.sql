@@ -155,17 +155,20 @@ from (
 
 /*Query 8: Best-selling product per month [2009-2011] */
 
-/*Query using materialized view: */
-select t2.StockCode, t2.description, t2.Month, t2.TotalQuantity
+/*Query using materialized view:(working) */
+select t3.stockCode,t3.description, t3.TotalQuantity as maxtotal, t3.month
+from (select max(maxtotal) as total,month
 from
-(select StockCode, description, max(totalquantity) as maxtotal  from mview_quantity_product 
-group by StockCode, description) as t1 inner join mview_quantity_product t2 
-on t2.stockCode=t1.stockcode and t2.description=t1.description and t2.TotalQuantity = t1.maxtotal;
+(select StockCode, description, Month, max(totalquantity) as maxtotal  from mview_quantity_product 
+group by StockCode, description, Month)t1
+group by month ) t2 inner join mview_quantity_product t3 
+on t3.TotalQuantity=t2.total and t3.Month=t2.month 
+order by t3.month asc;
 
 /* ****************************************************************************************************************** */
 
 /*Query 9: What is the change in total sales per country per year (trend of sales) */
-/*SQL Query */
+/*Query using materialized view: */
 
 SELECT a.sub_2010_2009, b.sub_2011_2010, b.Country
 FROM
@@ -193,7 +196,7 @@ where t1.country = t2.country) as b
 on b.country = a.country;
 
 
-/*Query using materialized view: */
+
 /* ****************************************************************************************************************** */
 
 /*Query 10: Average spending of a customer in that country (Total sales/ no of customer) */
