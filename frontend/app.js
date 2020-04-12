@@ -23,7 +23,7 @@ const neo4j = require("neo4j-driver");
 const mongoDBurl = "mongodb://localhost:27017/adb";
 
 MongoClient.connect(mongoDBurl, {useNewUrlParser: true, retryWrites: true, useUnifiedTopology: true}, function (err, client) {
-    if (err) throw err;
+    if (err) throw "Connection to MongoDB failed";
     const db = client.db("adb");
     const collection = db.collection("fact");
     app.locals.collection = collection;
@@ -66,26 +66,17 @@ MongoDB */
 
 /* Neo4j */
 // connection
-// const driver = neo4j.driver(uri, neo4j.auth.basic(user, password))
-// const session = driver.session()
-// const personName = "Alice"
+const neo4jUrl = "neo4j://localhost:7687";
+const driver = neo4j.driver(neo4jUrl, neo4j.auth.basic("neo4j", "password"));
+const session = driver.session({ database: "neo4j", defaultAccessMode: neo4j.session.READ });
 
-// try {
-//   const result = await session.run(
-//     "CREATE (a:Person {name: $name}) RETURN a",
-//     { name: personName }
-//   )
-
-//   const singleRecord = result.records[0]
-//   const node = singleRecord.get(0)
-
-//   console.log(node.properties.name)
-// } finally {
-//   await session.close()
-// }
-
-// // on application exit:
-// await driver.close()
+session.run("RETURN 1").then(function (res) {
+    console.log("Connected to Neo4j");
+}).catch(function (err) {
+    console.log("Connection to Neo4j failed");
+}).then(function () {
+    session.close();
+});
 /* Neo4j */
 
 
