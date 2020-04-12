@@ -1,5 +1,5 @@
 /**
- * Created on April 10, 2020
+ * Created on April 12, 2020
  */
 const express = require("express");
 const router = express.Router();
@@ -13,7 +13,7 @@ router.get("/query1", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -26,7 +26,7 @@ router.get("/query2", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -39,7 +39,7 @@ router.get("/query3", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -52,7 +52,7 @@ router.get("/query4", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -76,7 +76,7 @@ router.get("/query5", function (req, res) {
                     prevYrAvg = curYrAvg;
                 }
             });
-            res.render("results", {
+            res.render("mongo", {
                 data: results,
                 queryAnswers: explanations
             });
@@ -90,7 +90,7 @@ router.get("/query6", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -103,7 +103,7 @@ router.get("/query7", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -116,7 +116,7 @@ router.get("/query8", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -144,7 +144,7 @@ router.get("/query9", function (req, res) {
                     explanations.push("For " + doc._id + " sale record available for only year: " + doc.all_recs[0].Year + " and sale was: " + doc.all_recs[0].TotalSaleInYear);
                 }
             });
-            res.render("results", {
+            res.render("mongo", {
                 data: results,
                 queryAnswers: explanations
             });
@@ -158,7 +158,7 @@ router.get("/query10", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
@@ -171,7 +171,7 @@ router.get("/query11", function (req, res) {
             //res.status(200).json(results);
             //console.log(results);
             status = "200 OK";
-            res.render("results", {
+            res.render("mongo", {
                 data: results
             });
         })
