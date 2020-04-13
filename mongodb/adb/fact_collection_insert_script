@@ -1,0 +1,19 @@
+# insert records in fact collection 
+
+db.getSiblingDB('odb')['retail'].find( { }, 
+					  { CustomerID: 1, 
+					    Day: 1, 
+					    Month: 1, 
+					    Year: 1, 
+					    Hour: 1, 
+					    Minute: 1, 
+					    StockCode: 1, 
+					    Quantity: 1, 
+					    SubTotal: 1 
+									    } 
+				     ).forEach( function(rec){ db.fact.insert(rec) } )
+
+# Renaming the column name
+db.fact.updateMany( {}, { $rename: { "SubTotal": "TotalSales" } } )
+
+
