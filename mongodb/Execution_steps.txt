@@ -1,0 +1,29 @@
+# 1. Execute the following file in Jupyter notebook where the cleaned data set is kept:
+
+Online_Retail_Data_Cleaning.ipynb
+
+# 2. One output file will be generated, which is 'Online_Reatil_Data.csv'. This csv file needs to be imported in MongoDB odb.
+
+
+# Steps to import csv to MongoDB to ODB
+# 1. Go to the terminal and login to MongoDB (by typing ‘mongo’ to stay in the same terminal or ‘mongod’ to switch to a new terminal).
+# (Pre-requisite: Prior installation of MongoDB in the system and the mongodb service to be running.)
+# 2. Switch to or create a new database – ‘odb’ in MongoDB with the help of the following command in the terminal:
+
+use odb
+
+# 3. In a separate terminal, navigate to the path where the cleaned data file is present. The MongoDB import command is executed outside the mongo shell - in a normal terminal, with the help of the following command:
+
+mongoimport --db odb --collection retail --type csv --headerline --file Online_Retail_Data.csv
+
+# Steps to import data from ODB to ADB
+
+# Switch to adb database:
+
+use adb
+
+# Execute the scripts in the following files:
+# 1. customer_dim_insert_script
+# 2. stock_dim_insert_script
+# 3. time_dim_insert_script
+# 4. fact_collection_insert_script

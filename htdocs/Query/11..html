@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
+    <script>
+        const driver = neo4j.driver(
+            'neo4j://localhost:7687',
+             neo4j.auth.basic('neo4j', 'password')
+        );
+        const session = driver.session({
+            database: 'odb',
+            defaultAccessMode: neo4j.session.READ
+        });
+    </script>
+  </head>
+  <body>
+    <div id="results"> </div>
+    <script>
+      // Query to be run
+      cypher = 'CALL{ MATCH(f:FACT)-[r1:IS_STOCK]-(s:STOCKDIM) WITH [COUNT(f.StockCode), s.Description, f.CustomerID] AS INFO RETURN MAX(INFO[0]) AS Frequency, INFO[1] AS Description, INFO[2] AS CustomerID ORDER BY Frequency DESC, CustomerID } RETURN MAX(Frequency) AS Frequency, collect(Description)[0] AS Description, CustomerID ORDER BY CustomerID';
+      // Run query and build up result string 
+      session.run(cypher)
+          .then(result => {
+          var res = '<table><tr><th>Frequency</th><th>Description</th><th>TotalSales</th></tr>';
+          result.records.forEach(r => 
+                  res = res + '<tr><td>' 
+                            + r.get('n.Frequency')
+                            + '</td><td>'
+                            + r.get('n.Description')
+                            + '</td><td> $'
+                            + r.get('n.CustomerID')
+                            + '</td></tr>');
+
+          res = res + '</table>';
+          document.getElementById("results").innerHTML = res;
+      });
+
+    </script> 
+
+  </body>
+    
+</html>
