@@ -1,0 +1,30 @@
+<!-- views/sql.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>MongoDB</title>
+        <meta name="date" content="April 12, 2020">
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="/style.css">
+        <script src="/script.js" defer></script>
+    </head>
+    <body>
+        <table style="width:100%">
+            <tr>
+                <% Object.keys(data[0]).forEach(function(key) { %>
+                    <th><%= key %></th>
+                <% }); %>
+            </tr>
+            <% for (var idx=0; idx < data.length; idx++) { %>
+            <tr>
+                <% Object.keys(data[0]).forEach(function(key) { %>
+                        <td><%= data[idx][key] %></td> 
+                <% }); %>
+            </tr>
+            <% } %>
+        </table>
+    </body>
+</html>
