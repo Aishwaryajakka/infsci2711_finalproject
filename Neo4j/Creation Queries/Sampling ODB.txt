@@ -1,0 +1,5 @@
+//This query creates a representative subset of the ODB database for testing out queries
+
+MATCH(test:ODB)
+WHERE rand() < 0.01
+CREATE(:ODB_trim{Invoice: test.Invoice, StockCode: test.StockCode, Description: test.Description, Quantity: toInteger(test.Quantity), InvoiceDate: test.InvoiceDate, InvoiceTime: test.InvoiceTime, Price: toInteger(test.Price), CustomerID: test.CustomerID, Country:test.Country, SubTotal: toInteger(test.SubTotal)})
