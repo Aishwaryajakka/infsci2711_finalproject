@@ -8,13 +8,26 @@ const path = require("path");
 const url = require("url");
 const port = 3000;
 //const mongoose = require("mongoose");
-var MongoClient = require("mongodb").MongoClient;
+const mysql = require("mysql");
+const MongoClient = require("mongodb").MongoClient;
 const neo4j = require("neo4j-driver");
 
 
 /* SQL */
 // connection
+var con = mysql.createConnection({
+    host: "localhost",
+    port: "7778",
+    user: "root",
+    password: "root",
+    database : "online_retail_adb"
+});
 
+con.connect(function (err) {
+    if (err) throw "Connection to SQL failed";
+    console.log("Connected to SQL");
+    app.locals.con = con;
+});
 /* SQL */
 
 
@@ -30,9 +43,6 @@ MongoClient.connect(mongoDBurl, {useNewUrlParser: true, retryWrites: true, useUn
     console.log("Connected to MongoDB");
 });
 /* MongoDB */
-
-
-
 
 
 /// Failed ///
@@ -63,7 +73,6 @@ Fact.find({}, function (err, results) {
 MongoDB */
 
 
-
 /* Neo4j */
 // connection
 const neo4jUrl = "neo4j://localhost:7687";
@@ -78,7 +87,6 @@ session.run("RETURN 1").then(function (res) {
     session.close();
 });
 /* Neo4j */
-
 
 
 
