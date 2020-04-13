@@ -1,0 +1,8 @@
+//WARNING THIS HAS TIMEID because Neo4j 4.0 onwards has an inefficieny which prevents the relationship query from executing in less than 6 hours if at all
+
+CALL apoc.periodic.iterate(
+"MATCH(n:FACT),(m:TIMEDIM)
+WHERE n.TimeID=m.TimeID
+RETURN n,m",
+"CREATE (n)-[:IS_TIME]->(m)",
+{batchSize:100000})

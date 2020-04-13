@@ -1,0 +1,3 @@
+MATCH(f:FACT)-[r1:IS_CUSTOMER]->(c:CUSTOMERDIM)
+WITH [SUM(f.TotalSales),f.CustomerID]  AS Sales_per_Customer, c
+RETURN AVG(Sales_per_Customer[0]) AS Average_Spending_Per_Customer, c.Country AS Country
