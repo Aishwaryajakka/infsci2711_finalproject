@@ -1,8 +1,0 @@
-CALL{
-MATCH(f:FACT)-[r1:IS_STOCK]-(s:STOCKDIM)
-WITH [COUNT(f.StockCode), s.Description, f.CustomerID] AS INFO
-RETURN MAX(INFO[0]) AS Frequency, INFO[1] AS Description, INFO[2] AS CustomerID
-ORDER BY Frequency DESC, CustomerID
-}
-RETURN MAX(Frequency) AS Frequency, collect(Description)[0] AS Description, CustomerID
-ORDER BY CustomerID
