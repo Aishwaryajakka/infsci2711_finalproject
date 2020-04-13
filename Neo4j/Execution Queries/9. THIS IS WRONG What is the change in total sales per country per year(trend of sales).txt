@@ -1,0 +1,18 @@
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+//This query is WRONG Do not use this
+CALL{
+CALL{
+MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM)
+WITH [SUM(f.TotalSales), f.Year, c.Country] AS Top_Prod
+RETURN  Top_Prod[1] AS Year, Top_Prod[2] AS Country, SUM(Top_Prod[0]) AS TotalSales
+ORDER BY  Year
+}
+RETURN collect(Year) AS Year, Country, collect(TotalSales) AS TotalSales 
+}
+RETURN Country, ROUND(TotalSales[1]-TotalSales[0]) AS _2010_To_2009, ROUND(TotalSales[2]-TotalSales[1]) AS _2011_To_2010
+ORDER BY Country

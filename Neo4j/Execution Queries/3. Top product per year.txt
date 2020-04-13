@@ -1,0 +1,8 @@
+CALL{
+MATCH(s:STOCKDIM)<-[r1:IS_STOCK]-(f:FACT)
+WITH [s.Description, SUM(ROUND(f.TotalSales)), f.Year] AS INFO
+RETURN INFO[0] AS Description, INFO[1] AS Annual_Sales, INFO[2] AS Year
+ORDER BY Annual_Sales DESC, Year
+}
+RETURN MAX(Annual_Sales), collect(Description)[0], Year
+ORDER BY Year

@@ -1,0 +1,5 @@
+MATCH(f:FACT)
+WITH [SUM(f.TotalSales),f.CustomerID]  AS Sales_per_Customer
+RETURN MAX(Sales_per_Customer[0]) AS Total_Sale, Sales_per_Customer[1] AS CustomerID
+ORDER BY CustomerID DESC
+LIMIT 1

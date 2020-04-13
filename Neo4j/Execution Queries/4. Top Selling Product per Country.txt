@@ -1,0 +1,8 @@
+CALL{
+MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM)
+WITH [SUM(f.Quantity), s.Description, c.Country] AS Top_Prod
+RETURN MAX(Top_Prod[0]) AS Quantity, Top_Prod[1] AS Description, Top_Prod[2] AS Country
+ORDER BY Quantity DESC, Country ASC
+}
+RETURN MAX(Quantity), collect(Description)[0], Country
+ORDER BY Country

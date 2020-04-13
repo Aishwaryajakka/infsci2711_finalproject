@@ -1,0 +1,18 @@
+Please follow the order of operations to create the Database
+
+Save the .CSV files in the data/CSV folder into the import folder of the database
+
+Run "Creating ODB" in the Creation Queries folder by pasting the queries
+
+Run the "Converting InvoiceDate to neo4j format in ODB" and "Converting InvoiceTime to neo4j format in ODB" queries in the Cleaning Queries folder 
+
+Run the query in "Creating FACT.txt" under "Creation Queries" folder to create the FACT Table
+
+Run the query in "Creating TIMEDIM" under "Creation Queries" folder to create the TIME DIMENSION Table
+
+Run the query in "Creating_STOCKDIM" under "Creation Queries" folder to create the STOCKDIM DIMENSION Table
+
+Run the query in "Creating CUSTOMERDIM" under "Creation Queries" folder to create the CUSTOMER DIMENSION Table
+
+Run all the queries in the Creation Queries/Relationship folder this will create the relations between all the tables in the ADB
+
