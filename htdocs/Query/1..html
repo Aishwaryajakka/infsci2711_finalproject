@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
+    <script>
+        const driver = neo4j.driver(
+            'neo4j://localhost:7687',
+             neo4j.auth.basic('neo4j', 'password')
+        );
+        const session = driver.session({
+            database: 'odb',
+            defaultAccessMode: neo4j.session.READ
+        });
+    </script>
+  </head>
+  <body>
+    <div id="results"> </div>
+    <script>
+      // Query to be run
+      cypher = 'CALL{MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM) WITH [SUM(f.TotalSales), time({Hour:f.Hour, Minute:f.Minute}), c.Country] AS Top_Prod RETURN MAX(Top_Prod[0]) AS TotalSales, Top_Prod[1] AS Time, Top_Prod[2] AS Country ORDER BY TotalSales DESC, Country } RETURN Country, collect(Time)[0] AS Time, ROUND(MAX(TotalSales)) AS TotalSales ORDER BY Country';
+      // Run query and build up result string 
+      session.run(cypher)
+          .then(result => {
+          var res = '<table><tr><th>Time</th><th>TotalSales</th><th>Country</th></tr>';
+          result.records.forEach(r => 
+                  res = res + '<tr><td>' 
+                            + r.get('n.Time')
+                            + '</td><td>'
+                            + r.get('n.TotalSales')
+                            + '</td><td> $'
+                            + r.get('n.Country')
+                            + '</td></tr>');
+
+          res = res + '</table>';
+          document.getElementById("results").innerHTML = res;
+      });
+
+    </script> 
+
+  </body>
+    
+</html>

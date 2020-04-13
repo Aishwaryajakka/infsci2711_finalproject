@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
+    <script>
+        const driver = neo4j.driver(
+            'neo4j://localhost:7687',
+             neo4j.auth.basic('neo4j', 'password')
+        );
+        const session = driver.session({
+            database: 'odb',
+            defaultAccessMode: neo4j.session.READ
+        });
+    </script>
+  </head>
+  <body>
+    <div id="results"> </div>
+    <script>
+      // Query to be run
+      cypher = 'MATCH (n:FACT) RETURN n.StockCode, n.Quantity, n.TotalSales LIMIT 5';
+      // Run query and build up result string 
+      session.run(cypher)
+          .then(result => {
+          var res = '<table><tr><th>StoclCode</th><th>Quantity</th><th>TotalSales</th></tr>';
+          result.records.forEach(r => 
+                  res = res + '<tr><td>' 
+                            + r.get('n.StockCode')
+                            + '</td><td>'
+                            + r.get('n.Quantity')
+                            + '</td><td> $'
+                            + r.get('n.TotalSales')
+                            + '</td></tr>');
+
+          res = res + '</table>';
+          document.getElementById("results").innerHTML = res;
+      });
+
+    </script> 
+
+  </body>
+    
+</html>
