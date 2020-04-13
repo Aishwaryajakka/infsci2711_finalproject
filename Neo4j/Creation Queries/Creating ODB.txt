@@ -1,9 +1,0 @@
-//Importing the files must be done from the import folder in the database//
-//Please note that you have to paste the CSV's into the import folder in your database
-//Please note the Customer ID has to be renamed to "CustomerID" in the CSV's
-
-
-:auto USING PERIODIC COMMIT 1000 LOAD CSV WITH HEADERS FROM 'file:///Cleaned_2009_2010.csv' AS test CREATE (:ODB {Invoice: test.Invoice, StockCode: test.StockCode, Description: test.Description, Quantity: toInteger(test.Quantity), InvoiceDate: test.InvoiceDate, InvoiceTime: test.InvoiceTime, Price: toFloat(test.Price), CustomerID: test.CustomerID, Country:test.Country, SubTotal: toFloat(test.SubTotal)}) 
-
-:auto USING PERIODIC COMMIT 1000 LOAD CSV WITH HEADERS FROM 'file:///Cleaned_2010_2011.csv' AS test CREATE (:ODB {Invoice: test.Invoice, StockCode: test.StockCode, Description: test.Description, Quantity: toInteger(test.Quantity), InvoiceDate: test.InvoiceDate, InvoiceTime: test.InvoiceTime, Price: toFloat(test.Price), CustomerID: test.CustomerID, Country:test.Country, SubTotal: toFloat(test.SubTotal)})
- 
