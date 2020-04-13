@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
+    <script>
+        const driver = neo4j.driver(
+            'neo4j://localhost:7687',
+             neo4j.auth.basic('neo4j', 'password')
+        );
+        const session = driver.session({
+            database: 'odb',
+            defaultAccessMode: neo4j.session.READ
+        });
+    </script>
+  </head>
+  <body>
+    <div id="results"> </div>
+    <script>
+      // Query to be run
+      cypher = 'MATCH(f:FACT)-[r1:IS_CUSTOMER]->(c:CUSTOMERDIM) WITH [SUM(f.TotalSales),f.CustomerID]  AS Sales_per_Customer, c RETURN AVG(Sales_per_Customer[0]) AS Average_Spending_Per_Customer, c.Country AS Country';
+      // Run query and build up result string 
+      session.run(cypher)
+          .then(result => {
+          var res = '<table><tr><th>Average_Spending_Per_Customer</th><th>Country</th></tr>';
+          result.records.forEach(r => 
+                  res = res + '<tr><td>' 
+                            + r.get('n.Average_Spending_Per_Customer')
+                            + '</td><td>'
+                            + r.get('n.Country')
+                            + '</td></tr>');
+
+          res = res + '</table>';
+          document.getElementById("results").innerHTML = res;
+      });
+
+    </script> 
+
+  </body>
+    
+</html>

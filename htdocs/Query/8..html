@@ -1,0 +1,43 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
+    <script>
+        const driver = neo4j.driver(
+            'neo4j://localhost:7687',
+             neo4j.auth.basic('neo4j', 'password')
+        );
+        const session = driver.session({
+            database: 'odb',
+            defaultAccessMode: neo4j.session.READ
+        });
+    </script>
+  </head>
+  <body>
+    <div id="results"> </div>
+    <script>
+      // Query to be run
+      cypher = 'CALL{ MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM) WITH [SUM(f.Quantity), s.Description, f.Month] AS INFO RETURN MAX(INFO[0]) AS Quantity, INFO[1] AS Description, INFO[2] AS Months ORDER BY Quantity DESC, Months } RETURN Months AS SrNo, ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][Months-1] AS Month, collect(Description)[0] AS Description, MAX(Quantity) AS Quantity ORDER BY SrNo';
+      // Run query and build up result string 
+      session.run(cypher)
+          .then(result => {
+          var res = '<table><tr><th>SrNo</th><th>Month</th><th>Description</th><th>Quantity</th></tr>';
+          result.records.forEach(r => 
+                  res = res + '<tr><td>' 
+                            + r.get('n.SrNo')
+                            + '</td><td>'
+                            + r.get('n.Month')
+                            + '</td><td> $'
+                            + r.get('n.Description')
+                            + '</td><td> $'
+                            + r.get('n.Quantity')
+                            + '</td></tr>');
+
+          res = res + '</table>';
+          document.getElementById("results").innerHTML = res;
+      });
+
+    </script> 
+
+  </body>
+    
+</html>
