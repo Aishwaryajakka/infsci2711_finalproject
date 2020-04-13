@@ -15,6 +15,8 @@ router.get("/query1", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -28,6 +30,8 @@ router.get("/query2", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -41,6 +45,8 @@ router.get("/query3", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -54,6 +60,8 @@ router.get("/query4", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -79,6 +87,8 @@ router.get("/query5", function (req, res) {
             res.render("mongo", {
                 data: results,
                 queryAnswers: explanations
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -92,6 +102,8 @@ router.get("/query6", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -105,6 +117,8 @@ router.get("/query7", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -118,6 +132,8 @@ router.get("/query8", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -147,6 +163,8 @@ router.get("/query9", function (req, res) {
             res.render("mongo", {
                 data: results,
                 queryAnswers: explanations
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -160,6 +178,8 @@ router.get("/query10", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });
@@ -173,6 +193,8 @@ router.get("/query11", function (req, res) {
             status = "200 OK";
             res.render("mongo", {
                 data: results
+            }, function (err, html) {
+                res.send(html);
             });
         })
 });

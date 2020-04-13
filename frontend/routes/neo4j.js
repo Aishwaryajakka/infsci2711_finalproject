@@ -16,6 +16,8 @@ router.get("/query1", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
@@ -26,6 +28,8 @@ router.get("/query2", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
@@ -36,6 +40,8 @@ router.get("/query3", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
@@ -46,13 +52,15 @@ router.get("/query4", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
 });
 
 router.get("/query5", function (req, res) {
-    res.send("<h2>This query is not possible in Neo4j!</h2>")
+    res.send("<h4>This query is not possible in Neo4j!</h4>")
 });
 
 router.get("/query6", function (req, res) {
@@ -60,6 +68,8 @@ router.get("/query6", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
@@ -70,6 +80,8 @@ router.get("/query7", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
@@ -80,13 +92,15 @@ router.get("/query8", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
 });
 
 router.get("/query9", function (req, res) {
-    res.send("<h2>This query is not possible in Neo4j!</h2>")
+    res.send("<h4>This query is not possible in Neo4j!</h4>")
 });
 
 router.get("/query10", function (req, res) {
@@ -94,6 +108,8 @@ router.get("/query10", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
@@ -104,6 +120,8 @@ router.get("/query11", function (req, res) {
         //console.log(result);
         res.render("neo4j", {
             data: result.records
+        }, function (err, html) {
+            res.send(html);
         });
     }).catch(function (err) {
     })
