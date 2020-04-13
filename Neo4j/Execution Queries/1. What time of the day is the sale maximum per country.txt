@@ -1,8 +1,0 @@
-CALL{
-MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM)
-WITH [SUM(f.TotalSales), time({Hour:f.Hour, Minute:f.Minute}), c.Country] AS Top_Prod
-RETURN MAX(Top_Prod[0]) AS TotalSales, Top_Prod[1] AS Time, Top_Prod[2] AS Country
-ORDER BY TotalSales DESC, Country
-}
-RETURN Country, collect(Time)[0] AS Time, ROUND(MAX(TotalSales)) AS TotalSales
-ORDER BY Country

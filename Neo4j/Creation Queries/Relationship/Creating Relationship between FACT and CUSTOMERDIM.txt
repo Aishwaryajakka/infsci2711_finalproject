@@ -1,6 +1,0 @@
-CALL apoc.periodic.iterate(
-"MATCH(n:FACT),(m:CUSTOMERDIM)
-WHERE n.CustomerID=m.CustomerID
-RETURN n,m",
-"CREATE (n)-[:IS_CUSTOMER]->(m)",
-{batchSize:100000})

@@ -1,3 +1,0 @@
-MATCH(s:STOCKDIM)<-[r1:IS_STOCK]-(f:FACT)
-RETURN s.Description AS Description, SUM(ROUND(f.TotalSales)) AS Annual_Sales, f.Year AS Year
-ORDER BY Description, Year

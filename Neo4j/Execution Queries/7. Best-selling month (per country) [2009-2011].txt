@@ -1,8 +1,0 @@
-CALL{
-MATCH(c:CUSTOMERDIM)<-[r1:IS_CUSTOMER]-(f:FACT)-[r2:IS_STOCK]->(s:STOCKDIM)
-WITH [SUM(f.Quantity), f.Month, c.Country] AS Top_Prod
-RETURN MAX(Top_Prod[0]) AS Quantity, Top_Prod[1] AS Month, Top_Prod[2] AS Country
-ORDER BY Quantity DESC, Country
-}
-RETURN Country, ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"][collect(Month)[0]-1] AS Month, MAX(Quantity) AS Quantity
-ORDER BY Country
