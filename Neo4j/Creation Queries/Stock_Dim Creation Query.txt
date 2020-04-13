@@ -1,3 +1,0 @@
-MATCH(n:ODB)
-WITH n.StockCode as StockCode, collect(n) as nodes
-CREATE(:Stock_Dim{StockCode: nodes[0].StockCode, Description: nodes[0].Description})

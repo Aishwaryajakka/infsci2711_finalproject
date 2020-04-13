@@ -1,0 +1,41 @@
+<html>
+  <head>
+    <script src="https://unpkg.com/neo4j-driver"></script>
+    <script>
+        const driver = neo4j.driver(
+            'neo4j://localhost:7687',
+             neo4j.auth.basic('neo4j', 'password')
+        );
+        const session = driver.session({
+            database: 'odb',
+            defaultAccessMode: neo4j.session.READ
+        });
+    </script>
+  </head>
+  <body>
+    <div id="results"> </div>
+    <script>
+      // Query to be run
+      cypher = 'MATCH(s:STOCKDIM)<-[r1:IS_STOCK]-(f:FACT) WITH [s.Description, SUM(ROUND(f.TotalSales)), f.Year] AS INFO RETURN INFO[0] AS Description, INFO[1] AS Annual_Sales, INFO[2] AS Year ORDER BY Annual_Sales DESC, Year } RETURN MAX(Annual_Sales), collect(Description)[0], Year ORDER BY Year';
+      // Run query and build up result string 
+      session.run(cypher)
+          .then(result => {
+          var res = '<table><tr><th>MAX(Annual_Sales)</th><th>collect(Description)[0]</th><th>Year</th></tr>';
+          result.records.forEach(r => 
+                  res = res + '<tr><td>' 
+                            + r.get('n.MAX(Annual_Sales)')
+                            + '</td><td>'
+                            + r.get('n.collect(Description)[0]')
+                            + '</td><td> $'
+                            + r.get('n.Year')
+                            + '</td></tr>');
+
+          res = res + '</table>';
+          document.getElementById("results").innerHTML = res;
+      });
+
+    </script> 
+
+  </body>
+    
+</html>

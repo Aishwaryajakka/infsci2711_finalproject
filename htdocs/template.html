@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <title>INFSCI 2711 Advance Topics in DBMS Final Project Demo </title>
+    <script>
+     // Put javascript to run query here
+    </script>
+    <style>
+      td {
+          line-height: 1.5;
+      }
+    </style>
+  </head>
+
+  <body>
+    <form action="/test.html">    
+      <h3>Choose Your Database:</h3>
+      <table>
+        <tr>
+          <td><label for="cars">Choose a car:</label></td>
+          <td>
+            <select id="database" name="database">
+              <option value="" selected>Plese select a Database</option>
+              <option value="neo4j">Neo4j</option>
+              <option value="mongodb">MongoDB</option>
+              <option value="sql">RDBMS</option>
+            </select>
+          </td>
+        </tr>
+      </table>
+
+      <h3>Choose Your Query:</h3>
+      <table>
+        <tr>
+          <td> 
+            <input type="radio" id="1" name="query" value="query1">
+            <label for="1">What time of the day is the sale maximum per country?</label><br>
+            <input type="radio" id="2" name="query" value="query2">
+            <label for="2">Annual total sales of per product</label><br>
+            <input type="radio" id="3" name="query" value="query3">
+            <label for="3">Top product per year</label><br>
+            <input type="radio" id="4" name="query" value="query4">
+            <label for="4">Top product per country</label><br>
+            <input type="radio" id="5" name="query" value="query5">
+            <label for="5">Which item is sold below the threshold value (under-performed products)?</label><br>
+            <input type="radio" id="6" name="query" value="query6">
+            <label for="6">Which customer spends the most (per country or overall)?</label><br>
+            <input type="radio" id="7" name="query" value="query7">
+            <label for="7">Best-selling month (per country) [2009-2011]</label><br>
+            <input type="radio" id="8" name="query" value="query8">
+            <label for="8">Best-selling product per month [2009-2011]</label><br>
+            <input type="radio" id="9" name="query" value="query9">
+            <label for="9">What is the change in total sales per country per year (trend of sales)?</label><br>
+            <input type="radio" id="10" name="query" value="query10">
+            <label for="10">Average spending of a customer in that country (Total sales/ no of customer)</label><br>
+            <input type="radio" id="11" name="query" value="query11">
+            <label for="11">Frequently purchased item per customer</label><br>
+          </td>
+        </tr>
+      </table>
+      <p><input type="submit">   </p>
+      
+    </form>
+   <!--  <h3>The Query Resutls are Shown Below:</h3>
+  <div id='theResults'>
+  Resutls of query go 
+  </div>
+    here-->
+  </body>
+</html>

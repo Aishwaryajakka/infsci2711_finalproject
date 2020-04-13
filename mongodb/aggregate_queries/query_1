@@ -1,0 +1,65 @@
+# 1. What time of the day is the sale maximum per country?
+
+db.customer_dim.createIndex( { "CustomerID": 1 } )
+
+
+db.fact.aggregate(
+	[{
+	    $lookup: {
+	        from: 'customer_dim',
+	        localField: 'CustomerID',
+	        foreignField: 'CustomerID',
+	        as: 'customer_rec'
+	    }
+	}, {
+	    $unwind: {
+	        path: '$customer_rec'
+	    }
+	}, {
+	    $project: {
+	        Hour: 1,
+	        Country: '$customer_rec.Country',
+	        TotalSales: 1,
+	        _id: 0
+	    }
+	}, {
+	    $group: {
+	        _id: {
+	            Hour: '$Hour',
+	            Country: '$Country'
+	        },
+	        TotalSalePerCountry: {
+	            $sum: '$TotalSales'
+	        }
+	    }
+	}, {
+	    $project: {
+	        Hour: '$_id.Hour',
+	        Country: '$_id.Country',
+	        TotalSalePerCountry: 1,
+	        rec: '$$ROOT',
+	        _id: 0
+	    }
+	}, {
+	    $group: {
+	        _id: '$Country',
+	        MaxSalePerHourPerCountry: {
+	            $max: '$TotalSalePerCountry'
+	        },
+	        rec: {
+	            $first: '$rec'
+	        }
+	    }
+	}, {
+	    $project: {
+	        Country: '$_id',
+	        MaxSalePerHourPerCountry: 1,
+	        Hour: '$rec._id.Hour'
+	    }
+	}, {
+	    $sort: {
+	        Country: 1
+	    }
+	}]
+)
+
