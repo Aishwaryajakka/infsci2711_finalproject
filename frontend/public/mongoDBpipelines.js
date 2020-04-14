@@ -236,54 +236,69 @@ mongoDBpipelines = {
     ],
     "query6": [
         {
-	    $project: {
-	        CustomerID: '$CustomerID',
-	        TotalSales: '$TotalSales',
-	        rec: '$$ROOT',
-	        _id: 0
+        $lookup: {
+            from: 'customer_dim',
+            localField: 'CustomerID',
+            foreignField: 'CustomerID',
+            as: 'customer_rec'
             }
         },
         {
-	    $group: {
-	        _id: '$CustomerID',
-	        TotalSales: {
-	            $sum: '$TotalSales'
+        $unwind: {
+            path: '$customer_rec'
+            }
+        },
+        {
+        $group: {
+            _id: {
+                CustomerID: '$CustomerID',
+                Country: '$customer_rec.Country'
                 },
-	        all_sales: {
-	            $push: {
-	                sale: '$rec'
+            TotalSalePerCustomer: {
+                $sum: '$TotalSales'
+                },
+            all_sales: {
+                $push: {
+                    sale_rec: '$$ROOT'
                     }
                 }
             }
         },
         {
-	    $sort: {
-	        TotalSales: -1
+        $sort: {
+            TotalSalePerCustomer: -1
             }
         },
         {
-	    $project: {
-	        CustomerID: '$_id',
-	        TotalSales: 1,
-	        rec: '$$ROOT'
+        $project: {
+            CustomerID: '$_id.CustomerID',
+            Country: '$_id.Country',
+            TotalSalePerCustomer: 1,
+            _id: 0
             }
         },
         {
-	    $group: {
-	        _id: null,
-	        Max: {
-	            $max: '$TotalSales'
+        $group: {
+            _id: {
+                CustomerID: '$CustomerID',
+                Country: '$Country'
                 },
-	        rec: {
-	            $first: '$rec'
+            TotalSalePerCustomer: {
+                $max: '$TotalSalePerCustomer'
                 }
             }
         },
         {
-	    $project: {
-	        Sale: '$Max',
-	        CustomerID: '$rec._id',
-	        _id: 0
+        $sort: {
+            TotalSalePerCustomer: -1
+            }
+        },
+        {
+        $project: {
+            CustomerID: '$_id.CustomerID',
+            Country: '$_id.Country',
+            TotalSalePerCustomer: 1,
+            _id: 0,
             }
         }
     ],
