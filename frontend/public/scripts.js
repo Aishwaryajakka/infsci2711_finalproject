@@ -1,6 +1,14 @@
 var form = document.getElementById("form");
+var results = document.getElementById("results");
+
+var beachball = document.createElement("div");
+beachball.setAttribute("class", "beachball");
+
 form.addEventListener("submit", function (event) {
     event.preventDefault();
+    results.innerHTML = "";
+    results.appendChild(beachball);
+
     var formData = new FormData(form);
     fetch(event.target.action, {
         method: "POST",
@@ -11,7 +19,6 @@ form.addEventListener("submit", function (event) {
     }).then(function (res) {
         return res.text();
     }).then(function (resultHTML) {
-        var results = document.getElementById("results");
         results.innerHTML = resultHTML;
     }).catch(function (err) {
         console.log(err);

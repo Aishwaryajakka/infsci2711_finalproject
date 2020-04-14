@@ -1,0 +1,13 @@
+.beachball {
+    width: 20px;
+    height: 20px;
+    margin: auto;
+    border: 8px solid rgb(243, 243, 243);
+    border-radius: 50%;
+    border-top: 8px solid rgb(0, 120, 249);
+    animation: spin 2s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
