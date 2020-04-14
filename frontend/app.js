@@ -89,6 +89,11 @@ session.run("RETURN 1").then(function (res) {
 /* Neo4j */
 
 
+app.use(bodyParser.json());
+app.use(function(req, res, next) {
+    res.setHeader("Connection", "close");
+    next();
+});
 
 // use stylesheet in /public folder
 app.use(express.static(__dirname + "/public"));
@@ -103,27 +108,23 @@ app.get("/", function (req, res) {
 });
 
 // process form submission
-app.get("/process", function (req, res) {
-    if (req.query.database == "sql") {
+app.post("/process", function (req, res) {
+    if (req.body.database == "sql") {
         res.redirect(url.format({
-            pathname: "/sql/" + req.query.query,
+            pathname: "/sql/" + "query" + req.body.query,
         }));
-    } else if (req.query.database == "mongodb") {
+    } else if (req.body.database == "mongodb") {
         res.redirect(url.format({
-            pathname: "/mongo/" + req.query.query,
+            pathname: "/mongo/" + "query" + req.body.query,
         }));
-    } else if (req.query.database == "neo4j") {
+    } else if (req.body.database == "neo4j") {
         res.redirect(url.format({
-            pathname: "/neo4j/" + req.query.query,
+            pathname: "/neo4j/" + "query" + req.body.query,
         }));
     }
 });
 
-app.use(bodyParser.json());
-app.use(function(req, res, next) {
-    res.setHeader("Connection", "close");
-    next();
-});
+
 
 // load routes
 const mongoRouter = require("./routes/mongo");

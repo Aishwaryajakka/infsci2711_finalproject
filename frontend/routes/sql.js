@@ -12,6 +12,8 @@ router.get("/query1", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -22,6 +24,8 @@ router.get("/query2", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -32,6 +36,8 @@ router.get("/query3", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -42,6 +48,8 @@ router.get("/query4", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -52,6 +60,8 @@ router.get("/query5", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -62,6 +72,8 @@ router.get("/query6", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -72,6 +84,8 @@ router.get("/query7", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -82,6 +96,8 @@ router.get("/query8", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -92,6 +108,8 @@ router.get("/query9", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -102,6 +120,8 @@ router.get("/query10", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
@@ -112,6 +132,8 @@ router.get("/query11", function (req, res) {
         //console.log(rows);
         res.render("sql", {
             data: rows
+        }, function (err, html) {
+            res.send(html);
         });
     });
 });
