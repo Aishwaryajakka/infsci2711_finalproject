@@ -23,7 +23,7 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <select id="database" name="database">
+                                                <select id="database" name="database" required>
                                                     <option value="" selected>Plese select a database</option>
                                                     <option value="sql">SQL</option>
                                                     <option value="mongodb">MongoDB</option>
@@ -40,7 +40,7 @@
                                     <table>
                                         <tr>
                                             <td>
-                                                <input type="radio" id="1" name="query" value="1">
+                                                <input type="radio" id="1" name="query" value="1" required>
                                                 <label for="1">1. What time of the day is the sale maximum per country?</label><br>
                                                 <input type="radio" id="2" name="query" value="2">
                                                 <label for="2">2. Annual total sales of per product</label><br>
@@ -69,7 +69,7 @@
                             </tr>
                             <tr>
                                 <td>
-                                    <button type="submit">Submit</button>
+                                    <button type="submit" id="submitButton">Submit</button>
                                 </td>
                             </tr>
                         </table>
@@ -78,6 +78,7 @@
             </tr>
             <tr>
                 <td>
+                    <h4 style="display: inline;">Query runtime: </h4><p id="queryRuntime" style="display: inline;"></p>
                     <h3>The Query Results are Shown Below:</h3>
                     <div id="results">
                         <p>No database/query selected or data being loaded</p>
