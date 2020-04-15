@@ -25,7 +25,7 @@ This Online Retail II data set (the original dataset is a excel file) contains a
 
 ## Data Description
 
-The dataset has the following attributes:
+The dataset has the following attributes:<br/>
 1.InvoiceNo: Invoice number. Nominal. A 6-digit integral number uniquely assigned to each transaction. If this code starts with the letter 'c', it indicates a cancellation. <br/>
 2.StockCode: Product (item) code. Nominal. A 5-digit integral number uniquely assigned to each distinct product.<br/>
 3.Description: Product (item) name. Nominal.<br/>
