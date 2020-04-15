@@ -17,6 +17,7 @@ Other subgroups:
 |Group task    | Team |
 | ----------- | ----------- |
 | Data Cleaning      | Kwesi Alguillera      |
+| Front-end + Back-end      | Kenny Wu, Kwesi Alguillera      |
 | Documentation   | Piu mallick, Reshma Pothen , Shruti Gupta       |
 
 ## Online Retail Database
