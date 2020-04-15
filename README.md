@@ -49,6 +49,15 @@ The dataset has the following attributes:<br/>
 10.What is the average spending of a customer per country? (TotalSales/Number of customers)<br/>
 11.What is the frequently purchased item per customer?<br/>
 
+## Instructions to start the server
+#### Pre-req: please have all databases installed and configured following the steps in their respective folders
+##### (SQL should be at default port 7778 with username and password both set as "root", MongoDB should be at default port 27017 without changing the default username and password, Neo4j should be at default port 7687 with username "neo4j" and password "password" while database name named as "neo4j")
+
+1. Download and install NodeJS from https://nodejs.org/en/download/
+2. Navigate into the "/infsci2711_finalproject/frontend" folder/directory using cd in command line
+3. Type in "node app.js" to the same command line window/instance. 
+4. Goto http://localhost:3000/ on any browser
+5. Voila!
 
 
 
