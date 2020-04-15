@@ -45,34 +45,6 @@ MongoClient.connect(mongoDBurl, {useNewUrlParser: true, retryWrites: true, useUn
 /* MongoDB */
 
 
-/// Failed ///
-/* MongoDB (mongoose)
-// connection
-const mongoDB_uri = ("mongodb://localhost:27017/adb");
-mongoose.connect(mongoDB_uri, {useNewUrlParser: true, retryWrites: true, useUnifiedTopology: true});
-const mongoDB = mongoose.connection;
-mongoDB.on("connected", function () {
-    console.log("Mongoose connected");
-    mongoose.connection.db.listCollections().toArray(function (err, names) {
-        //console.log(names);
-    }); 
-});
-mongoDB.on("error", function (err) {
-    console.log("Mongoose connection error: " + err);
-});
-mongoDB.on("disconnected", function () {
-    console.log("Mongoose disconnected.");
-});
-
-const Fact = require("./models/facts");
-
-Fact.find({}, function (err, results) {
-    if (err) throw err;
-    console.log(results);
-});
-MongoDB */
-
-
 /* Neo4j */
 // connection
 const neo4jUrl = "neo4j://localhost:7687";
