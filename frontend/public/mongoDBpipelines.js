@@ -90,6 +90,35 @@ mongoDBpipelines = {
 	        Stock: 1,
 	        Year: 1
             }
+        },
+        {
+	    $lookup: {
+	        from: "stock_dim",
+	        localField: "Stock",
+	        foreignField: "StockCode",
+	        as: 'stk'
+            }
+        },
+        {
+	    $project: {
+	        Stock: 1,
+	        Year: 1,
+	        TotalAnnualSales: 1,
+	        first: {
+	            $arrayElemAt: [
+                        "$stk",
+                        0
+                    ]
+                }
+            }
+        },
+        {
+	    $project: {
+	        Stock: 1,
+	        Year: 1,
+	        TotalAnnualSales: 1,
+	        Description: "$first.Description"
+            }
         }
     ],
     "query3": [
