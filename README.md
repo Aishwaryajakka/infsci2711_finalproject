@@ -49,7 +49,6 @@ The dataset has the following attributes:
 10.What is the average spending of a customer per country? (TotalSales/Number of customers)
 11.What is the frequently purchased item per customer?
 
-## Instructions to Run the DataWarehouse of Online Retail Database
-npm start 
+
 
 
