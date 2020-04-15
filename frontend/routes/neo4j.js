@@ -60,7 +60,7 @@ router.get("/query4", function (req, res) {
 });
 
 router.get("/query5", function (req, res) {
-    res.send("<h4>This query is not possible in Neo4j!</h4>")
+    res.send("<p>This query is not possible in Neo4j!</p>")
 });
 
 router.get("/query6", function (req, res) {
@@ -100,7 +100,7 @@ router.get("/query8", function (req, res) {
 });
 
 router.get("/query9", function (req, res) {
-    res.send("<h4>This query is not possible in Neo4j!</h4>")
+    res.send("<p>This query is not possible in Neo4j!</p>")
 });
 
 router.get("/query10", function (req, res) {
