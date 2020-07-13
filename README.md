@@ -1,4 +1,4 @@
-# infsci2711_finalproject
+# Online Retail Datawarehouse
 
 ## This project is a multi-database warehouse built using SQL, MongoDB and Neo4j on dataset : https://archive.ics.uci.edu/ml/datasets/Online+Retail+II
 
